@@ -12,7 +12,7 @@ class CategoryBloc extends Bloc<CategoryEvent,CategoryState>{
       emit(CategoryLoadingState());
 
       try{
-        dynamic mData = await apiHelper.postApi(url: AppUrls.category_url);
+        dynamic mData = await apiHelper.getApi(url: AppUrls.category_url) ;
         if(mData["status"]){
           emit(CategoryLoadedState(categories: mData["data"]));
         }else {

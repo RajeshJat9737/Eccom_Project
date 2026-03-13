@@ -326,57 +326,57 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 11),
             SizedBox(
               height: 100,
-              child: BlocBuilder<CategoryBloc, CategoryState>(
-                builder: (context, state){
-                  if (state is CategoryLoadingState){
-                    return Center(
-                     child: CircularProgressIndicator(),
-                    );
-                  }
-                  if (state is CategoryErrorState){
-                    return Center(
-                      child: Text(state.errorMsg),
-                    );
-                  }
-                  if(state is CategoryLoadedState){
-                    return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.categories.length,
-                      itemBuilder: (_, index) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 9),
-                              width: 70,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(state.categories[index].id ?? mProductsData[index]["image"],),
-                                  fit: BoxFit.cover,
+              child:  BlocBuilder<CategoryBloc, CategoryState>(
+                  builder: (context, state){
+                    if (state is CategoryLoadingState){
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (state is CategoryErrorState){
+                      return Center(
+                        child: Text(state.errorMsg),
+                      );
+                    }
+                    if(state is CategoryLoadedState){
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.categories.length,
+                        itemBuilder: (_, index) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 9),
+                                width: 70,
+                                height: 70,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: NetworkImage(state.categories[index].name ?? mProductsData[index]["image"],),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              mProductsData[index]["name"],
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
+                              SizedBox(height: 5),
+                              Text(state.categories[index].name ??
+                                  mProductsData[index]["name"],
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                            ],
+                          );
+                        },
+                      );
+                    }
+                    return Container();
                   }
-                  return Container();
-                }
-
               ),
             ),
-            SizedBox(height: 11),
+
+             SizedBox(height: 11),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Row(

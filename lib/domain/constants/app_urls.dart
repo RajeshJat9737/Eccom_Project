@@ -5,6 +5,7 @@ class AppUrls {
   static final String product_url = "$base_url/products";
   static final String add_to_cart_url = "$base_url/add-to-cart";
   static final String category_url = "$base_url/categories";
+  static final String view_cart_url = "$base_url/view-cart";
 
 
 

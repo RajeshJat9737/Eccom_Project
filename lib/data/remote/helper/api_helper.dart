@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../domain/constants/app_constants.dart';
 
 class ApiHelper {
-  getApi() {}
+  getApi({required String url}) {}
 
   Future<dynamic> postApi({
     required String url,
